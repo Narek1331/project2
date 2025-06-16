@@ -253,10 +253,34 @@ if (typeof Scrollbar !== typeof null) {
 /*---------------------------------------------------------------------
   Data tables
 -----------------------------------------------------------------------*/
-if($.fn.DataTable){
-  if($('[data-toggle="data-table"]').length) {
+if ($.fn.DataTable) {
+  if ($('[data-toggle="data-table"]').length) {
     const table = $('[data-toggle="data-table"]').DataTable({
-      "dom": '<"row align-items-center"<"col-md-6" l><"col-md-6" f>><"table-responsive border-bottom my-3" rt><"row align-items-center" <"col-md-6" i><"col-md-6" p>><"clear">',
+      dom: '<"row align-items-center"<"col-md-6" l><"col-md-6" f>>' +
+           '<"table-responsive border-bottom my-3" rt>' +
+           '<"row align-items-center"<"col-md-6" i><"col-md-6" p>>' +
+           '<"clear">',
+      language: {
+        processing: "Обработка...",
+        search: "Поиск:",
+        lengthMenu: "Показать _MENU_ записей",
+        info: "Показано от _START_ до _END_ из _TOTAL_ записей",
+        infoEmpty: "Показано от 0 до 0 из 0 записей",
+        infoFiltered: "(отфильтровано из _MAX_ записей)",
+        loadingRecords: "Загрузка...",
+        zeroRecords: "Совпадений не найдено",
+        emptyTable: "Нет данных в таблице",
+        paginate: {
+            first: "Первая",
+            previous: "Предыдущая",
+            next: "Следующая",
+            last: "Последняя"
+        },
+        aria: {
+            sortAscending: ": активировать для сортировки по возрастанию",
+            sortDescending: ": активировать для сортировки по убыванию"
+        }
+    }
     });
   }
 }

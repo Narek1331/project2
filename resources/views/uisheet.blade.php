@@ -3168,7 +3168,7 @@
                                                 aria-selected="true">Home</button>
                                             <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                                                 data-bs-target="#nav-profile" type="button" role="tab"
-                                                aria-controls="nav-profile" aria-selected="false">Profile</button>
+                                                aria-controls="nav-profile" aria-selected="false">Профиль</button>
                                             <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 data-bs-target="#nav-contact" type="button" role="tab"
                                                 aria-controls="nav-contact" aria-selected="false">Contact</button>
@@ -3213,7 +3213,7 @@
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
                                                 data-bs-target="#pills-profile1" type="button" role="tab"
-                                                aria-controls="profile" aria-selected="false">Profile</button>
+                                                aria-controls="profile" aria-selected="false">Профиль</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="contact-tab" data-bs-toggle="tab"

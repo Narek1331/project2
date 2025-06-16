@@ -29,7 +29,7 @@
                         <a class="nav-link" data-bs-toggle="tab" href="#profile-friends" role="tab" aria-selected="false">Friends</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#profile-profile" role="tab" aria-selected="false">Profile</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#profile-profile" role="tab" aria-selected="false">Профиль</a>
                      </li>
                   </ul>
                </div>
@@ -595,7 +595,7 @@
             <div class="card">
                <div class="card-header">
                   <div class="header-title">
-                     <h4 class="card-title">Profile</h4>
+                     <h4 class="card-title">Профиль</h4>
                   </div>
                </div>
                <div class="card-body">

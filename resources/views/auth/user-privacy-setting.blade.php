@@ -66,7 +66,7 @@
                             </div>
                             <hr>
                             <div class="data-privacy">
-                                <h4 class="mb-2"> Your Profile </h4>
+                                <h4 class="mb-2"> Профиль </h4>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="public" name="customRadio1" class="custom-control-input"
                                         checked="">

@@ -22,7 +22,7 @@
           <a class="nav-link" href="#">Notifications</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Profile</a>
+          <a class="nav-link" href="#">Профиль</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Switch account</a>

@@ -17,7 +17,7 @@
                   <!-- <table id="user-list-table" class="table table-striped" role="grid" data-toggle="data-table">
                      <thead>
                         <tr class="ligth">
-                           <th>Profile</th>
+                           <th>Профиль</th>
                            <th>Name</th>
                            <th>Contact</th>
                            <th>Email</th>

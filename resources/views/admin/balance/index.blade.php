@@ -1,5 +1,5 @@
 <x-app-layout :assets="$assets ?? []">
-    <div class="container py-4" style="margin-top: 100px!important">
+    <div class="container py-4">
     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4">
         <h1 class="h2 mb-2 mb-sm-0">Баланс</h1>
         <!-- Можно добавить кнопки справа -->

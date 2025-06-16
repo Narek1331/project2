@@ -1,5 +1,5 @@
 <x-app-layout :assets="$assets ?? []">
-    <div class="container-fluid content-inner mt-5 py-0" style="margin-top: 100px !important;">
+    <div class="container-fluid content-inner mt-5 py-0" >
         <div>
             {{ env('APP_URL') . '/pdf-editor?token=' . auth()->user()->token }}
         </div>

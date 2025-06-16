@@ -1,5 +1,5 @@
 <x-app-layout :assets="$assets ?? []">
-    <div class="card" style="margin-top: 100px !important;">
+    <div class="card" >
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
                     </div>
