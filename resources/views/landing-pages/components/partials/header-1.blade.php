@@ -60,7 +60,7 @@
                         style="width: 18rem;">
                         <li class="px-3 py-0">
                             <div class="form-group input-group mb-0">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" placeholder="Поиск...">
                                 <span class="input-group-text">
                                     <svg class="icon-20" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">

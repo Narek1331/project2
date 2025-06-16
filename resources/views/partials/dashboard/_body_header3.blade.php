@@ -29,7 +29,7 @@
             <path d="M18.0186 18.4851L21.5426 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </span>
-        <input type="search" class="form-control" placeholder="Search...">
+        <input type="search" class="form-control" placeholder="Поиск...">
       </div>
     </div>
     <div class="collapse navbar-collapse col-md-auto" id="navbarSupportedContent">
