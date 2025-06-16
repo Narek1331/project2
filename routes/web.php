@@ -155,13 +155,16 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
     Route::group(['prefix' => 'site'], function() {
         Route::post('/import-excel', [AdminSiteController::class,'importExcel'])->name('admin.site.import-excel');
         Route::get('/', [AdminSiteController::class,'index'])->name('admin.site');
-        Route::get('/{id}', [AdminSiteController::class,'edit'])->name('admin.site.edit');
-        Route::post('/{id}', [AdminSiteController::class,'update'])->name('admin.site.update');
-        Route::delete('/{id}', [AdminSiteController::class,'delete'])->name('admin.site.delete');
+
+        Route::get('/{id}', [AdminSiteController::class,'edit'])->name('admin.site.edit')->where('id', '[0-9]+');
+        Route::post('/{id}', [AdminSiteController::class,'update'])->name('admin.site.update')->where('id', '[0-9]+');
+        Route::delete('/{id}', [AdminSiteController::class,'delete'])->name('admin.site.delete')->where('id', '[0-9]+');
+        Route::patch('/{id}', [AdminSiteController::class,'updateStatus'])->name('admin.site.update-status')->where('id', '[0-9]+');
+
         Route::post('', [AdminSiteController::class,'store'])->name('admin.site.store');
         Route::get('/create', [AdminSiteController::class,'create'])->name('admin.site.create');
-        Route::patch('/{id}', [AdminSiteController::class,'updateStatus'])->name('admin.site.update-status');
     });
+
 
 
 
