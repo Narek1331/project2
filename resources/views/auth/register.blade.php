@@ -18,8 +18,8 @@
                            </svg>
                            <h4 class="logo-title ms-3">{{env('APP_NAME')}}</h4>
                         </a>
-                        <h2 class="mb-2 text-center">Sign Up</h2>
-                        <p class="text-center">Create your {{env('APP_NAME')}} account.</p>
+                        <h2 class="mb-2 text-center">Регистрация</h2>
+                        {{-- <p class="text-center">Create your {{env('APP_NAME')}} account.</p> --}}
                         <x-auth-session-status class="mb-4" :status="session('status')" />
 
                         <!-- Validation Errors -->
@@ -29,13 +29,13 @@
                            <div class="row">
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="full-name" class="form-label">Full Name</label>
+                                    <label for="full-name" class="form-label">Имя</label>
                                     <input id="name"  name="first_name" value="{{old('first_name')}}" class="form-control" type="text" placeholder=" "  required autofocus >
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="last-name" class="form-label">Last Name</label>
+                                    <label for="last-name" class="form-label">Фамилия</label>
                                     <input class="form-control" type="text" name="last_name" placeholder=" " value="{{old('last_name')}}" required>
                                  </div>
                               </div>
@@ -47,31 +47,31 @@
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="phone" class="form-label">Phone No.</label>
+                                    <label for="phone" class="form-label">Номер телефона</label>
                                     <input class="form-control" type="text" name="phone_number" placeholder=" ">
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="password" class="form-label">Password</label>
+                                    <label for="password" class="form-label">Пароль</label>
                                     <input class="form-control" type="password" placeholder=" " id="password" name="password" required autocomplete="new-password" >
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="confirm-password" class="form-label">Confirm Password</label>
+                                    <label for="confirm-password" class="form-label">Подтвердите пароль</label>
                                     <input id="password_confirmation" class="form-control" type="password" placeholder=" " name="password_confirmation" required >
                                  </div>
                               </div>
                               <div class="d-flex justify-content-center">
                                  <div class="form-check mb-3">
-                                    <label class="form-check-label" for="customCheck1">I agree with the terms of use</label>
+                                    <label class="form-check-label" for="customCheck1">Я согласен с условиями использования</label>
                                     <input type="checkbox" class="custom-control-input" id="customCheck1" required>
                                  </div>
                               </div>
                            </div>
                            <div class="d-flex justify-content-center">
-                              <button type="submit" class="btn btn-primary"> {{ __('sign up') }}</button>
+                              <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
                            </div>
                            {{-- <p class="text-center my-3">or sign in with other accounts?</p>
                            <div class="d-flex justify-content-center">
@@ -91,7 +91,8 @@
                               </ul>
                            </div> --}}
                            <p class="mt-3 text-center">
-                              Already have an Account  <a href="{{route('auth.signin')}}" class="text-underline">Sign In</a>
+                              У вас уже есть аккаунт
+                              <a href="{{route('auth.signin')}}" class="text-underline">Войти</a>
                            </p>
                         </form>
                      </div>

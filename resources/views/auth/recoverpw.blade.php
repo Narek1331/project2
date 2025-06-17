@@ -4,7 +4,7 @@
          <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
             <img src="{{asset('images/auth/02.png')}}" class="img-fluid gradient-main animated-scaleX" alt="images">
          </div>
-         <div class="col-md-6 p-0">               
+         <div class="col-md-6 p-0">
             <div class="card card-transparent auth-card shadow-none d-flex justify-content-center mb-0">
                <div class="card-body">
                   <a href="{{route('dashboard')}}" class="navbar-brand d-flex align-items-center mb-3">
@@ -16,8 +16,8 @@
                      </svg>
                      <h4 class="logo-title ms-3">{{env('APP_NAME')}}</h4>
                   </a>
-                  <h2 class="mb-2">Reset Password</h2>
-                  <p>Enter your email address and we'll send you an email with instructions to reset your password.</p>
+                  <h2 class="mb-2">Сбросить пароль</h2>
+                  <p>Введите свой адрес электронной почты, и мы отправим вам письмо с инструкциями по сбросу пароля.</p>
                   <x-auth-validation-errors class="mb-4" :errors="$errors" />
                   <form>
                      <div class="row">
@@ -28,10 +28,10 @@
                            </div>
                         </div>
                      </div>
-                     <button type="submit" class="btn btn-primary btn-block">  {{ __('Reset') }}</button>
+                     <button type="submit" class="btn btn-primary btn-block">Сбросить</button>
                   </form>
                </div>
-            </div>               
+            </div>
             <div class="sign-bg sign-bg-right">
                <svg width="280" height="230" viewBox="0 0 431 398" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g opacity="0.05">
