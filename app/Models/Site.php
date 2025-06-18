@@ -10,6 +10,7 @@ class Site extends Model
         'user_id',
         'domain',
         'region',
+        'city',
         'click_in_hour',
         'click_per_day',
         'clean_click_in_hour',

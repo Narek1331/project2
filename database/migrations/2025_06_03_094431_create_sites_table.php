@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('domain');
-            $table->string('region');
+            $table->string('region')->nullable();
+            $table->string('city')->nullable();
             $table->bigInteger('click_in_hour')->nullable();
             $table->bigInteger('click_per_day')->nullable();
             $table->bigInteger('clean_click_in_hour')->nullable();

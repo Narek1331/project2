@@ -50,7 +50,8 @@ class SiteController extends Controller
         $site = $this->siteService->store(
             auth()->id(),
             $request->input('domain'),
-            $request->input('region')
+            $request->input('region'),
+            $request->input('city')
         );
 
         if (!$site) {
@@ -92,13 +93,8 @@ class SiteController extends Controller
 
     public function updateStatus(int $id, Request $request): RedirectResponse
     {
-        $request->validate([
-            'status' => 'required|in:0,1',
-        ]);
 
-        $status = (int)$request->input('status');
-
-        if (!$this->siteService->updateStatus($id, $status)) {
+        if (!$this->siteService->updateStatus($id)) {
             return redirect()
                 ->back()
                 ->withErrors(['status' => 'Не удалось обновить статус сайта.']);

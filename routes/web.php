@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SiteController as AdminSiteController;
 use App\Http\Controllers\Admin\PdfController as AdminPdfController;
 use App\Http\Controllers\Admin\BalanceController as AdminBalanceController;
+use App\Http\Controllers\Admin\TicketController as AdminTicketController;
+use App\Http\Controllers\Auth\GoogleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +29,11 @@ require __DIR__.'/auth.php';
 
 Route::get('/storage', function () {
     Artisan::call('storage:link');
+});
+
+Route::group(['prefix' => 'auth'], function() {
+    Route::get('/google', [GoogleController::class, 'redirectToGoogle']);
+    Route::get('/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 });
 
 
@@ -150,6 +157,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
     Route::group(['prefix' => 'balance'], function() {
         Route::get('/', [AdminBalanceController::class,'index'])->name('admin.balance');
         Route::post('/top-up', [AdminBalanceController::class,'topUp'])->name('admin.balance.top-up');
+    });
+
+    Route::group(['prefix' => 'ticket'], function() {
+        Route::get('/', [AdminTicketController::class,'index'])->name('admin.ticket');
     });
 
     Route::group(['prefix' => 'site'], function() {

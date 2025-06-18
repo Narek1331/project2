@@ -19,13 +19,14 @@ class SiteService
      * @param string $region
      * @return Site|null
      */
-    public function store(int $userId, string $domain, $region = null): ?Site
+    public function store(int $userId, string $domain, $region = null, $city = null): ?Site
     {
 
         return $this->siteRepository->create([
             'user_id' => $userId,
             'domain' => $domain,
             'region' => $region,
+            'city' => $city,
             'click_in_hour' => 0,
             'click_per_day' => 0,
             'clean_click_in_hour' => 0,
@@ -42,7 +43,7 @@ class SiteService
         return $this->siteRepository->getAllByUser($userId);
     }
 
-    public function updateStatus(int $id, int $status): bool
+    public function updateStatus(int $id, $status = null): bool
     {
         return $this->siteRepository->updateStatus($id, $status);
     }
@@ -59,6 +60,7 @@ class SiteService
         $this->siteRepository->update($site,[
             'domain' => $data['domain'],
             'region' => $data['region'],
+            'city' => $data['city'],
         ]);
 
         if(isset($data['keywords']) && $data['keywords'])

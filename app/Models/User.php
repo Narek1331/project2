@@ -30,7 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'email',
         'password',
         'token',
-        'balance'
+        'balance',
+        'google_id'
     ];
 
     /**

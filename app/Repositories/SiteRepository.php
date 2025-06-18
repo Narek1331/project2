@@ -26,9 +26,20 @@ class SiteRepository
             ->get();
     }
 
-    public function updateStatus(int $id, int $status): bool
+    public function updateStatus(int $id, $status = null): bool
     {
-        return Site::where('id', $id)->update(['status' => $status]);
+        $site = $this->getById($id);
+
+        if(!$status)
+        {
+            $status = !$site->status;
+        }
+
+        return $site->update([
+            'status' => $status
+        ]) ;
+
+
     }
 
     public function getById(int $id)

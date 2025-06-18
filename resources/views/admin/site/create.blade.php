@@ -12,45 +12,21 @@
                             <input required type="text" class="form-control" id="domain" name="domain">
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="region">
-                                Регион
-                            </label>
-                            <select class="form-select" id="region" name="region">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="region" class="form-label">Регион</label>
+                                <select id="region" name="region" class="form-select">
                                 <option value="">Выберите регион</option>
-                                @php
-                                    $regions = [
-                                        'Республики' => [
-                                            'Республика Адыгея' => 'Республика Адыгея',
-                                            'Республика Алтай' => 'Республика Алтай',
-                                        ],
-                                        'Края' => [
-                                            'Алтайский край' => 'Алтайский край',
-                                        ],
-                                        'Области' => [
-                                            'Амурская область' => 'Амурская область',
-                                        ],
-                                        'Города федерального значения' => [
-                                            'Москва' => 'Москва',
-                                        ],
-                                        'Автономные округа' => [
-                                            'Чукотский автономный округ' => 'Чукотский автономный округ',
-                                        ],
-                                        'Автономная область' => [
-                                            'Еврейская автономная область' => 'Еврейская автономная область',
-                                        ],
-                                    ];
-                                @endphp
-
-                                @foreach($regions as $group => $items)
-                                    <optgroup label="{{ $group }}">
-                                        @foreach($items as $key => $value)
-                                            <option value="{{ $value }}" >{{ $value }}</option>
-                                        @endforeach
-                                    </optgroup>
-                                @endforeach
-                            </select>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="city" class="form-label">Город</label>
+                                <select id="city" name="city" class="form-select">
+                                <option value="">Выберите город</option>
+                                </select>
+                            </div>
                         </div>
+
 
                         <div class="container mt-4">
                     <div class="mb-3">
@@ -142,6 +118,56 @@ document.addEventListener('DOMContentLoaded', function () {
             e.target.closest('.repeater-item').remove();
 
         }
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const regionSelect = document.getElementById('region');
+    const citySelect = document.getElementById('city');
+
+    const country = 'Russia';
+
+    // Load regions (states) for Russia
+    fetch('https://countriesnow.space/api/v0.1/countries/states', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ country })
+    })
+    .then(res => res.json())
+    .then(data => {
+        const states = data.data?.states || [];
+        regionSelect.innerHTML = '<option value="">Выберите регион</option>';
+        states.forEach(state => {
+            const opt = document.createElement('option');
+            opt.value = state.name;
+            opt.textContent = state.name;
+            regionSelect.appendChild(opt);
+        });
+    });
+
+    // When a region is selected → load its cities
+    regionSelect.addEventListener('change', () => {
+        const state = regionSelect.value;
+        citySelect.innerHTML = '<option value="">Загрузка...</option>';
+
+        fetch('https://countriesnow.space/api/v0.1/countries/state/cities', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ country, state })
+        })
+        .then(res => res.json())
+        .then(data => {
+            const cities = data.data || [];
+            citySelect.innerHTML = '<option value="">Выберите город</option>';
+            cities.forEach(city => {
+                const opt = document.createElement('option');
+                opt.value = city;
+                opt.textContent = city;
+                citySelect.appendChild(opt);
+            });
+        });
     });
 });
 </script>

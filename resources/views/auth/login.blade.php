@@ -50,23 +50,25 @@
                            <div class="d-flex justify-content-center">
                               <button type="submit" class="btn btn-primary">Войти в аккаунт</button>
                            </div>
-                           {{-- <p class="text-center my-3">or sign in with other accounts?</p>
+                           <p class="text-center my-3">или войти с помощью других аккаунтов?</p>
                            <div class="d-flex justify-content-center">
                               <ul class="list-group list-group-horizontal list-group-flush">
-                                 <li class="list-group-item border-0 pb-0">
+                                 {{-- <li class="list-group-item border-0 pb-0">
                                     <a href="#"><img src="{{asset('images/brands/fb.svg')}}" alt="fb"></a>
-                                 </li>
+                                 </li> --}}
                                  <li class="list-group-item border-0 pb-0">
-                                    <a href="#"><img src="{{asset('images/brands/gm.svg')}}" alt="gm"></a>
-                                 </li>
-                                 <li class="list-group-item border-0 pb-0">
+                                    <a href="{{ url('auth/google') }}">
+                                        <img src="{{ asset('images/brands/gm.svg') }}" alt="Google Sign-In">
+                                    </a>
+                                </li>
+                                 {{-- <li class="list-group-item border-0 pb-0">
                                     <a href="#"><img src="{{asset('images/brands/im.svg')}}" alt="im"></a>
                                  </li>
                                  <li class="list-group-item border-0 pb-0">
                                     <a href="#"><img src="{{asset('images/brands/li.svg')}}" alt="li"></a>
-                                 </li>
+                                 </li> --}}
                               </ul>
-                           </div> --}}
+                           </div>
                            <p class="mt-3 text-center">
                               У вас нет учетной записи?
                              <a href="{{route('auth.signup')}}" class="text-underline">Нажмите здесь, чтобы зарегистрироваться.</a>

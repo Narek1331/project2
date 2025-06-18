@@ -23,7 +23,8 @@ class SiteRequest extends FormRequest
     {
         return [
             'domain' => 'string|required',
-            'region' => 'nullable|string'
+            'region' => 'nullable|string',
+            'city' => 'nullable|string'
         ];
     }
 }
