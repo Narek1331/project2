@@ -13,10 +13,10 @@
         </div>
         <div class="d-flex justify-content-end">
             <div class="d-flex justify-content-between" style="width: 300px;">
-                <a href="{{ route('admin.site.create') }}" class="btn btn-primary">
+                <a href="{{ route('admin.site.create') }}" class="btn btn-sm btn-primary">
                     Добавить сайт
                 </a>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#firstModal">
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#firstModal">
                     Импорт Excel
                 </button>
 
