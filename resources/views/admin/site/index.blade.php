@@ -89,6 +89,15 @@
                                                     <td>
                                                         <div class="d-flex align-items-center gap-3 flex-nowrap">
 
+                                                            {{-- Status Switch --}}
+                                                        <form method="POST" action="{{ route('admin.site.update-status', ['id' => $site->id]) }}" class="m-0 p-0">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <div class="form-check form-switch d-flex align-items-center m-0">
+                                                                <input class="form-check-input" type="checkbox" id="switch1" onchange="this.form.submit()" @if ($site->status) checked @endif>
+                                                                {{-- <label class="form-check-label ms-2 mb-0" for="switch1">Статус</label> --}}
+                                                            </div>
+                                                        </form>
 
                                                         {{-- Edit Button --}}
                                                         <a class="btn btn-outline-primary d-flex align-items-center justify-content-center p-2"
@@ -119,15 +128,7 @@
                                                             </button>
                                                         </form>
 
-                                                           {{-- Status Switch --}}
-                                                        <form method="POST" action="{{ route('admin.site.update-status', ['id' => $site->id]) }}" class="m-0 p-0">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <div class="form-check form-switch d-flex align-items-center m-0">
-                                                                <input class="form-check-input" type="checkbox" id="switch1" onchange="this.form.submit()" @if ($site->status) checked @endif>
-                                                                {{-- <label class="form-check-label ms-2 mb-0" for="switch1">Статус</label> --}}
-                                                            </div>
-                                                        </form>
+
 
                                                         <p style="display: none">{{ $site->status }}</p>
                                                     </div>
