@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Запрос к API для получения региона в виде дерева
     async function fetchRegions() {
-        const res = await fetch('http://localhost/api/region');
+        const res = await fetch('/api/region');
         if (!res.ok) {
             alert('Ошибка загрузки регионов');
             return;

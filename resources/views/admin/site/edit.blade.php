@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectedRegionName = '{{ $site->region }}'; // выбранный регион из Blade
 
     async function fetchRegions() {
-        const res = await fetch('http://localhost/api/region');
+        const res = await fetch('/api/region');
         if (!res.ok) {
             alert('Ошибка загрузки регионов');
             return [];
