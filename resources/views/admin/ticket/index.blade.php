@@ -7,6 +7,13 @@
 
 <x-app-layout :assets="$assets ?? []">
   <div class="container-fluid content-inner mt-n5 py-0">
+    <div class="d-flex justify-content-end">
+        <div class="d-flex" style="width: 300px;margin-bottom:10px">
+            <a href="{{ route('admin.ticket.create') }}" class="btn btn-sm btn-primary">
+                Создать Создать тикет
+            </a>
+        </div>
+    </div>
     <div class="row">
       <div class="col-sm-12">
         <div class="card">

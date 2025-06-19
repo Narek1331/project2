@@ -161,6 +161,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
 
     Route::group(['prefix' => 'ticket'], function() {
         Route::get('/', [AdminTicketController::class,'index'])->name('admin.ticket');
+        Route::get('/create', [AdminTicketController::class,'create'])->name('admin.ticket.create');
+        Route::post('/', [AdminTicketController::class,'store'])->name('admin.ticket.store');
     });
 
     Route::group(['prefix' => 'site'], function() {

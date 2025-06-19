@@ -79,7 +79,7 @@
                                                     <td>
                                                         <div>
                                                             <p>{{ $site->domain }}</p>
-                                                            <span>{{ $site->city }}</span>
+                                                            <span>{{ $site->region }}</span>
                                                         </div>
                                                     </td>
                                                     <td>{{ $site->keywords->count() ?? 0 }}</td>

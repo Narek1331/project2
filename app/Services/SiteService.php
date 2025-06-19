@@ -60,7 +60,7 @@ class SiteService
         $this->siteRepository->update($site,[
             'domain' => $data['domain'],
             'region' => $data['region'],
-            'city' => $data['city'],
+            'city' => $data['city'] ?? null,
         ]);
 
         if(isset($data['keywords']) && $data['keywords'])

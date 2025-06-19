@@ -12,20 +12,8 @@
                             <input required type="text" class="form-control" id="domain" name="domain">
                         </div>
 
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="region" class="form-label">Регион</label>
-                                <select id="region" name="region" class="form-select">
-                                <option value="">Выберите регион</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="city" class="form-label">Город</label>
-                                <select id="city" name="city" class="form-select">
-                                <option value="">Выберите город</option>
-                                </select>
-                            </div>
-                        </div>
+                        <label for="region" class="form-label">Регион</label>
+                        <div id="region-selects"></div>
 
 
                         <div class="container mt-4">
@@ -123,51 +111,74 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const regionSelect = document.getElementById('region');
-    const citySelect = document.getElementById('city');
+    // Контейнер для селектов регионов
+    const container = document.getElementById('region-selects');
+    let regionsTree = [];
 
-    const country = 'Russia';
+    // Запрос к API для получения региона в виде дерева
+    async function fetchRegions() {
+        const res = await fetch('http://localhost/api/region');
+        if (!res.ok) {
+            alert('Ошибка загрузки регионов');
+            return;
+        }
+        const json = await res.json();
+        return json.data;
+    }
 
-    // Load regions (states) for Russia
-    fetch('https://countriesnow.space/api/v0.1/countries/states', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ country })
-    })
-    .then(res => res.json())
-    .then(data => {
-        const states = data.data?.states || [];
-        regionSelect.innerHTML = '<option value="">Выберите регион</option>';
-        states.forEach(state => {
-            const opt = document.createElement('option');
-            opt.value = state.name;
-            opt.textContent = state.name;
-            regionSelect.appendChild(opt);
+    // Создаём селект с именем "region"
+    function createSelect(options, level = 0) {
+        const select = document.createElement('select');
+        select.name = 'region';            // <-- добавляем name="region"
+        select.dataset.level = level;
+
+        const defaultOption = document.createElement('option');
+        defaultOption.text = 'Выберите регион';
+        defaultOption.value = '';
+        select.appendChild(defaultOption);
+
+        options.forEach(region => {
+            const option = document.createElement('option');
+            option.value = region.name;    // value теперь имя региона
+            option.textContent = region.name;
+            option.dataset.children = JSON.stringify(region.children_recursive || region.children || []);
+            select.appendChild(option);
         });
-    });
 
-    // When a region is selected → load its cities
-    regionSelect.addEventListener('change', () => {
-        const state = regionSelect.value;
-        citySelect.innerHTML = '<option value="">Загрузка...</option>';
+        select.addEventListener('change', onSelectChange);
+        return select;
+    }
 
-        fetch('https://countriesnow.space/api/v0.1/countries/state/cities', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ country, state })
-        })
-        .then(res => res.json())
-        .then(data => {
-            const cities = data.data || [];
-            citySelect.innerHTML = '<option value="">Выберите город</option>';
-            cities.forEach(city => {
-                const opt = document.createElement('option');
-                opt.value = city;
-                opt.textContent = city;
-                citySelect.appendChild(opt);
-            });
+    // Обработчик смены селекта
+    function onSelectChange(event) {
+        const select = event.target;
+        const level = parseInt(select.dataset.level);
+        const selectedOption = select.options[select.selectedIndex];
+        const children = selectedOption.dataset.children ? JSON.parse(selectedOption.dataset.children) : [];
+
+        // Удаляем селекты с большим уровнем вложенности
+        const selects = container.querySelectorAll('select');
+        selects.forEach(s => {
+            if (parseInt(s.dataset.level) > level) {
+                container.removeChild(s);
+            }
         });
-    });
-});
+
+        // Если есть дети — создаём следующий селект
+        if (children.length > 0) {
+            const nextSelect = createSelect(children, level + 1);
+            container.appendChild(nextSelect);
+        }
+    }
+
+    // Инициализация селектов
+    async function init() {
+        regionsTree = await fetchRegions();
+        if (!regionsTree) return;
+        const firstSelect = createSelect(regionsTree, 0);
+        container.appendChild(firstSelect);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
 </script>
+

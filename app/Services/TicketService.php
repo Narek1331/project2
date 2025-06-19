@@ -6,15 +6,35 @@ use App\Repositories\TicketRepository;
 
 class TicketService
 {
-    protected $ticketRepository;
+    protected TicketRepository $ticketRepo;
 
-    public function __construct(TicketRepository $ticketRepository)
+    public function __construct(TicketRepository $ticketRepo)
     {
-        $this->ticketRepository = $ticketRepository;
+        $this->ticketRepo = $ticketRepo;
     }
 
-    public function getAllTickets()
+    public function getAll()
     {
-        return $this->ticketRepository->getAllTickets();
+        return $this->ticketRepo->all();
+    }
+
+    public function getById(int $id)
+    {
+        return $this->ticketRepo->find($id);
+    }
+
+    public function create(array $data)
+    {
+        return $this->ticketRepo->create($data);
+    }
+
+    public function update(int $id, array $data)
+    {
+        return $this->ticketRepo->update($id, $data);
+    }
+
+    public function delete(int $id)
+    {
+        return $this->ticketRepo->delete($id);
     }
 }

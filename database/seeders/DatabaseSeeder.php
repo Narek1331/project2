@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             RoleTableSeeder::class,
             UserTableSeeder::class,
-            AdminParamsSeeder::class
+            AdminParamsSeeder::class,
+            RegionSeeder::class,
         ]);
         \App\Models\User::factory(40)->create()->each(function($user) {
             $user->assignRole('user');
