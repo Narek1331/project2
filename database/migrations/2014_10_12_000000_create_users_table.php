@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->string('token')->nullable();
             $table->bigInteger('balance')->default(0);
             $table->string('google_id')->nullable();
+            $table->string('referral_token')->nullable();
+            $table->string('referred_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

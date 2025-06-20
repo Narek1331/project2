@@ -31,7 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'password',
         'token',
         'balance',
-        'google_id'
+        'google_id',
+        'referral_token',
+        'referred_by'
     ];
 
     /**
@@ -77,6 +79,16 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function isClient(): bool
     {
         return $this->hasRole('user');
+    }
+
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'referred_by','referral_token');
+    }
+
+    public function referredUser()
+    {
+        return $this->belongsTo(User::class, 'referral_token','referred_by');
     }
 
 }

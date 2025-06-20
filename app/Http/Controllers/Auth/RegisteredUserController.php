@@ -32,6 +32,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -46,7 +47,8 @@ class RegisteredUserController extends Controller
             'phone_number' => $request->phone_number,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'user_type' => 'user'
+            'user_type' => 'user',
+            'referred_by' => $request->referral ?? null
         ]));
 
         $user->assignRole('user');

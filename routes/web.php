@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\SiteController as AdminSiteController;
 use App\Http\Controllers\Admin\PdfController as AdminPdfController;
 use App\Http\Controllers\Admin\BalanceController as AdminBalanceController;
 use App\Http\Controllers\Admin\TicketController as AdminTicketController;
+use App\Http\Controllers\Admin\ReferralController as AdminReferralController;
 use App\Http\Controllers\SuperAdmin\TicketController as SuperAdminTicketController;
 use App\Http\Controllers\TicketMessageController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -179,6 +180,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','is_client']], functio
         Route::patch('/{id}', [AdminSiteController::class,'updateStatus'])->name('admin.site.update-status')->where('id', '[0-9]+');
 
         Route::post('', [AdminSiteController::class,'store'])->name('admin.site.store');
+    });
+
+    Route::group(['prefix' => 'referral'], function() {
+        Route::get('/', [AdminReferralController::class,'index'])->name('admin.referral');
     });
 });
 

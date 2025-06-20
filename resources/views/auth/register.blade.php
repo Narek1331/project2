@@ -25,6 +25,9 @@
                         <!-- Validation Errors -->
                         <x-auth-validation-errors class="mb-4" :errors="$errors" />
                         <form method="POST" action="{{route('register')}}" data-toggle="validator">
+                            <div id="referral">
+
+                            </div>
                             {{csrf_field()}}
                            <div class="row">
                               <div class="col-lg-6">
@@ -113,3 +116,19 @@
       </div>
    </section>
 </x-guest-layout>
+
+<script>
+    // Получаем параметры из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+
+    if (ref) {
+        // Создаем скрытый input
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'referral';
+        input.value = ref;
+
+        document.getElementById('referral').appendChild(input);
+    }
+</script>

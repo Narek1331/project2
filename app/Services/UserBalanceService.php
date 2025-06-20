@@ -44,4 +44,18 @@ class UserBalanceService
 
     }
 
+    public function referredUser(User $user, User $referredUser)
+    {
+        $user->update([
+            'balance' => $user->balance + 100
+        ]);
+
+        $user->balanceTransactions()->create([
+            'price' => 100,
+            'description' => 'Бонус за регистрацию пользователя: ' . $referredUser->email,
+            'type' => 'increment',
+            'status' => true
+        ]);
+    }
+
 }

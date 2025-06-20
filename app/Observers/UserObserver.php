@@ -3,49 +3,33 @@
 namespace App\Observers;
 
 use App\Models\User;
+use App\Services\UserBalanceService;
 use Illuminate\Support\Str;
 
 class UserObserver
 {
+    protected UserBalanceService $balanceService;
+
+    public function __construct(UserBalanceService $balanceService)
+    {
+        $this->balanceService = $balanceService;
+    }
+
     /**
      * Handle the User "created" event.
      */
     public function created(User $user): void
     {
         $user->token = Str::random(40);
-
+        $user->referral_token = Str::random(20);
         $user->saveQuietly();
-    }
 
-    /**
-     * Handle the User "updated" event.
-     */
-    public function updated(User $user): void
-    {
-        //
-    }
+        if ($user->referred_by) {
+            $referrer = User::where('referral_token', $user->referred_by)->first();
 
-    /**
-     * Handle the User "deleted" event.
-     */
-    public function deleted(User $user): void
-    {
-        //
-    }
-
-    /**
-     * Handle the User "restored" event.
-     */
-    public function restored(User $user): void
-    {
-        //
-    }
-
-    /**
-     * Handle the User "force deleted" event.
-     */
-    public function forceDeleted(User $user): void
-    {
-        //
+            if ($referrer) {
+                $this->balanceService->referredUser($referrer, $user);
+            }
+        }
     }
 }
