@@ -68,4 +68,15 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return $this->hasMany(UserBalanceTransaction::class);
     }
+
+    public function isAdmin(): bool
+    {
+        return $this->hasRole('admin');
+    }
+
+    public function isClient(): bool
+    {
+        return $this->hasRole('user');
+    }
+
 }

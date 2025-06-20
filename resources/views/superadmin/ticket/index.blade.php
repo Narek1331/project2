@@ -7,13 +7,7 @@
 
 <x-app-layout :assets="$assets ?? []">
   <div class="container-fluid content-inner mt-n5 py-0">
-    <div class="d-flex justify-content-end">
-        <div class="d-flex" style="width: 300px;margin-bottom:10px">
-            <a href="{{ route('admin.ticket.create') }}" class="btn btn-sm btn-primary">
-                Создать Создать тикет
-            </a>
-        </div>
-    </div>
+
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
@@ -110,7 +104,7 @@
                                 <td>
                                     {{-- Edit Button --}}
                                         <a class="btn btn-outline-primary d-flex align-items-center justify-content-center p-2"
-                                        href="{{ route('admin.ticket.show', ['id' => $ticket->id]) }}">
+                                        href="{{ route('superadmin.ticket.show', ['id' => $ticket->id]) }}">
                                             <svg class="icon-24" width="15" height="15" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"

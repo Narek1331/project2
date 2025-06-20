@@ -11,9 +11,19 @@ class TicketRepository
         return Ticket::all();
     }
 
+    public function getAllByUser(int $userId)
+    {
+        return Ticket::where('user_id',$userId)->get();
+    }
+
     public function find(int $id): ?Ticket
     {
         return Ticket::find($id);
+    }
+
+    public function findOrFail(int $id): ?Ticket
+    {
+        return Ticket::findOrFail($id);
     }
 
     public function create(array $data): Ticket

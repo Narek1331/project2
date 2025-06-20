@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\SiteController as AdminSiteController;
 use App\Http\Controllers\Admin\PdfController as AdminPdfController;
 use App\Http\Controllers\Admin\BalanceController as AdminBalanceController;
 use App\Http\Controllers\Admin\TicketController as AdminTicketController;
+use App\Http\Controllers\SuperAdmin\TicketController as SuperAdminTicketController;
+use App\Http\Controllers\TicketMessageController;
 use App\Http\Controllers\Auth\GoogleController;
 /*
 |--------------------------------------------------------------------------
@@ -152,7 +154,7 @@ Route::get('privacy-policy', [HomeController::class, 'privacypolicy'])->name('pa
 Route::get('terms-of-use', [HomeController::class, 'termsofuse'])->name('pages.term-of-use');
 
 
-Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
+Route::group(['prefix' => 'admin','middleware' => ['auth','is_client']], function() {
 
     Route::group(['prefix' => 'balance'], function() {
         Route::get('/', [AdminBalanceController::class,'index'])->name('admin.balance');
@@ -161,6 +163,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
 
     Route::group(['prefix' => 'ticket'], function() {
         Route::get('/', [AdminTicketController::class,'index'])->name('admin.ticket');
+        Route::get('/{id}', [AdminTicketController::class,'show'])->name('admin.ticket.show')->where('id', '[0-9]+');
         Route::get('/create', [AdminTicketController::class,'create'])->name('admin.ticket.create');
         Route::post('/', [AdminTicketController::class,'store'])->name('admin.ticket.store');
     });
@@ -177,13 +180,18 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
 
         Route::post('', [AdminSiteController::class,'store'])->name('admin.site.store');
     });
+});
 
 
+Route::group(['prefix' => 'superadmin','middleware' => ['auth','is_admin']], function() {
 
-
-
-
+    Route::group(['prefix' => 'ticket'], routes: function() {
+        Route::get('/', [SuperAdminTicketController::class,'index'])->name('superadmin.ticket');
+        Route::get('/{id}', [SuperAdminTicketController::class,'show'])->name('superadmin.ticket.show')->where('id', '[0-9]+');
+    });
 
 });
+
+Route::post('/ticket-messages', [TicketMessageController::class, 'store'])->name('ticket-messages.store');
 
 Route::get('/pdf-editor',[AdminPdfController::class,'index'])->name('pdf-editor');

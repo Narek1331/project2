@@ -18,8 +18,14 @@ class TicketController extends Controller
 
     public function index(Request $request)
     {
-        $tickets = $this->ticketService->getAll();
+        $tickets = $this->ticketService->getAllByUser();
         return view('admin.ticket.index', compact('tickets'));
+    }
+
+    public function show($id, Request $request)
+    {
+        $ticket = $this->ticketService->getById($id);
+        return view('admin.ticket.show', compact('ticket'));
     }
 
     public function create(Request $request)
@@ -28,6 +34,10 @@ class TicketController extends Controller
     }
     public function store(TicketRequest $request)
     {
-        dd($request->all());
+        $this->ticketService->create($request->validated());
+
+        return redirect()->route('admin.ticket')
+        ->with('success', 'Тикет успешно создан');
+
     }
 }
